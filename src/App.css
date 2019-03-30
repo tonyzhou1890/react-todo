@@ -50,3 +50,107 @@
   border: none;
   box-shadow: inset 0 -2px 1px rgba(0,0,0,0.5);
 }
+
+.App-body .app-list {
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.app-list .list-item {
+  width: 100%;
+  text-align-last: left;
+  padding: 10px;
+  border-bottom: 1px solid #4d4d4d;
+  vertical-align: middle;
+  background-color: #fff;
+}
+
+.list-item span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.list-item .item-check {
+  position: relative;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+.list-item .item-check.checked::after {
+  content: "√";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  color: rgb(189, 155, 155);
+}
+
+.list-item .item-text {
+  width: 500px;
+  padding-left: 10px;
+  font-size: 24px;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-item .item-text.checked {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.list-item .item-delete {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+}
+
+.App-body .action-bar {
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+}
+
+.action-bar div {
+  display: inline-block;
+  padding: 5px;
+}
+
+.action-bar .left {
+  position: absolute;
+  left: 0;
+}
+
+.action-bar .right {
+  position: absolute;
+  right: 0;
+}
+
+.action-bar span {
+  display: inline-block;
+  padding: 5px;
+}
+
+.action-bar .middle span,
+.action-bar .right span {
+  cursor: pointer;
+}
+
+.action-bar .middle span {
+  border: 1px solid transparent;
+}
+
+.action-bar .middle .checked {
+  border: 1px solid gray;
+  border-radius: 4px;
+}

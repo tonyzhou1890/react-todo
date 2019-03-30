@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoInput from '../TodoInput'
 import List from '../List'
+import ActionBar from '../ActionBar'
 import ActionContext from '../../context'
 
 class AppBody extends Component {
@@ -13,6 +14,8 @@ class AppBody extends Component {
     this.listAdd = this.listAdd.bind(this)
     this.listDelete = this.listDelete.bind(this)
     this.listChange = this.listChange.bind(this)
+    this.changeStatus = this.changeStatus.bind(this)
+    this.clearList = this.clearList.bind(this)
   }
 
   // 新增 todo
@@ -44,18 +47,35 @@ class AppBody extends Component {
     })
   }
 
+  // 改变当前显示列表
+  changeStatus(value) {
+    this.setState({
+      status: value
+    })
+  }
+
+  // 清空列表
+  clearList() {
+    this.setState({
+      list: []
+    })
+  }
+
   render() {
     let filterList = []
-    if (this.status === 'active') {
-      filterList = this.list.filter(item => {
+    let number = this.state.list.filter(item => {
+      return !item.done
+    }).length
+    if (this.state.status === 'active') {
+      filterList = this.state.list.filter(item => {
         return !item.done
       })
-    } else if (this.status === 'completed') {
-      filterList = this.list.filter(item => {
+    } else if (this.state.status === 'completed') {
+      filterList = this.state.list.filter(item => {
         return item.done
       })
     } else {
-      filterList = this.list
+      filterList = this.state.list
     }
 
     return (
@@ -65,8 +85,14 @@ class AppBody extends Component {
           listChange: this.listChange,
           listDelete: this.listDelete
         }}>
-          <List list={this.state.list}></List>
+          <List list={filterList}></List>
         </ActionContext.Provider>
+        <ActionBar
+          number={number}
+          status={this.state.status}
+          changeStatus={this.changeStatus}
+          clearList={this.clearList}
+        ></ActionBar>
       </div>
     )
   }
